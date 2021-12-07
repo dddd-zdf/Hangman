@@ -2,9 +2,7 @@ package Hangman;
 
 public interface HangmanController {
     /**
-     * initial a hangman game
-     *
-     * @param m the game model
+     * initialize a hangman game
      */
-    void playGame(HangmanModel m);
+    void playGame();
 }

@@ -79,6 +79,7 @@ public class HangmanModelImp implements HangmanModel {
     public int guess(char c) {
         int mark = 0;
         for (int i = 0; i < this.word.length(); i++) {
+
             if (this.word.charAt(i) == c) {
                 this.status[i] = c;
                 mark = 1;
