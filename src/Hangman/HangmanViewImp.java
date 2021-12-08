@@ -10,7 +10,103 @@ public class HangmanViewImp implements HangmanView {
         this.in = in;
         this.out = out;
     }
+    private void draw(int mis) {
+        String s;
+        switch (mis) {
+            case 1 -> s = """
+                    
+                    |
+                    |
+                    |
+                    |
+                    |
+                    |
+                    |
+                    ----------""";
+            case 2 -> s = """
+                     ------
+                    |     |
+                    |
+                    |
+                    |
+                    |
+                    |
+                    |
+                    ----------""";
+            case 3 -> s = """
+                     ------
+                    |     |
+                    |     O
+                    |
+                    |
+                    |
+                    |
+                    |
+                    ----------""";
+            case 4 -> s = """
+                     ------
+                    |     |
+                    |     O
+                    |     +
+                    |     |
+                    |
+                    |
+                    |
+                    ----------""";
+            case 5 -> s = """
+                     ------
+                    |     |
+                    |     O
+                    |   --+
+                    |     |
+                    |
+                    |
+                    |
+                    ----------""";
+            case 6 -> s = """
+                     ------
+                    |     |
+                    |     O
+                    |   --+--
+                    |     |
+                    |
+                    |
+                    |
+                    ----------""";
+            case 7 -> s = """
+                     ------
+                    |     |
+                    |     O
+                    |   --+--
+                    |     |
+                    |    /
+                    |   /
+                    |
+                    ----------""";
+            case 8 -> s = """
+                    ------
+                    |     |
+                    |     O
+                    |   --+--
+                    |     |
+                    |    / \\
+                    |   /   \\
+                    |
+                    ----------""";
+            default -> s = """
 
+
+
+
+
+
+
+
+
+                    ----------""";
+        }
+        this.out.println(s);
+    }
     @Override
     public InputStream getIn() {
         return in;
@@ -18,33 +114,52 @@ public class HangmanViewImp implements HangmanView {
 
     @Override
     public void wordPickError() {
-        this.out.println("dictionary file error\n");
+        this.out.println("dictionary file error");
     }
 
     @Override
-    public void guessWrong(String status) {
-        this.out.println("wrong\n" + status + "\n");
+    public void guessWrong(String status, int mis) {
+        this.out.println("wrong\nhangman status:");
+        this.draw(mis);
+        this.out.println("word: " + status);
     }
 
     @Override
-    public void guessRight(String status) {
-        this.out.println("right\n" + status + "\n");
+    public void guessRight(String status, int mis) {
+        this.out.println("right\nhangman status:");
+        this.draw(mis);
+        this.out.println("word: " + status);
+    }
+
+    @Override
+    public void existing() {
+        this.out.println("existing letter");
     }
 
     @Override
     public void letterOnly() {
-        this.out.println("letter only\n");
+        this.out.println("letter only");
     }
 
     @Override
     public void loss() {
-        this.out.println("loss.\n");
+        this.out.println("loss.");
 
     }
 
     @Override
     public void win() {
-        this.out.println("win.\n");
+        this.out.println("win.");
+    }
+
+    @Override
+    public void prompt() {
+        this.out.println("input your guess: ");
+    }
+
+    @Override
+    public void showAnswer(String ans) {
+        this.out.println("The word is " + ans);
     }
 
 }

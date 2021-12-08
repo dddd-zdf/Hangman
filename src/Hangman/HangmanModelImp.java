@@ -70,8 +70,7 @@ public class HangmanModelImp implements HangmanModel {
 
     @Override
     public String getStatus() {
-        String output;
-        return Arrays.toString(this.status);
+        return new String(status);
     }
 
 
@@ -79,7 +78,7 @@ public class HangmanModelImp implements HangmanModel {
     public int guess(char c) {
         int mark = 0;
         for (int i = 0; i < this.word.length(); i++) {
-
+            if (this.status[i] == c) {return -1;}
             if (this.word.charAt(i) == c) {
                 this.status[i] = c;
                 mark = 1;
@@ -101,5 +100,10 @@ public class HangmanModelImp implements HangmanModel {
             this.mis++;
             return 0;
         }
+    }
+
+    @Override
+    public String getWord() {
+        return this.word;
     }
 }

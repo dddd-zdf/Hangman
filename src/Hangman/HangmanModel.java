@@ -30,7 +30,7 @@ public interface HangmanModel {
     /**
      * take a character for guess
      * @param c the character
-     * @return 1 if right, 0 if wrong
+     * @return 1 if right, 0 if wrong, -1 if the char has been shown
      */
     int guess(char c);
 
@@ -40,4 +40,11 @@ public interface HangmanModel {
      * @return 1 if right, 0 if wrong
      */
     int guess(String s);
+
+    /**
+     * return the word
+     *
+     * @return the word as a string
+     */
+    String getWord();
 }
