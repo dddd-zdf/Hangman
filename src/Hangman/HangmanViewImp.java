@@ -10,6 +10,12 @@ public class HangmanViewImp implements HangmanView {
         this.in = in;
         this.out = out;
     }
+
+    /**
+     * print the current hangman image
+     *
+     * @param mis the number of mistakes so far
+     */
     private void draw(int mis) {
         String s;
         switch (mis) {
@@ -144,7 +150,6 @@ public class HangmanViewImp implements HangmanView {
     @Override
     public void loss() {
         this.out.println("loss.");
-
     }
 
     @Override
@@ -159,7 +164,7 @@ public class HangmanViewImp implements HangmanView {
 
     @Override
     public void showAnswer(String ans) {
-        this.out.println("The word is " + ans);
+        this.out.println("The word is " + "\"" + ans + "\"");
     }
 
 }
