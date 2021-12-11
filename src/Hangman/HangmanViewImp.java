@@ -6,6 +6,7 @@ import java.io.PrintStream;
 public class HangmanViewImp implements HangmanView {
     private final InputStream in;
     private final PrintStream out;
+
     public HangmanViewImp(InputStream in, PrintStream out) {
         this.in = in;
         this.out = out;
@@ -20,7 +21,7 @@ public class HangmanViewImp implements HangmanView {
         String s;
         switch (mis) {
             case 1 -> s = """
-                    
+                                        
                     |
                     |
                     |
@@ -113,6 +114,7 @@ public class HangmanViewImp implements HangmanView {
         }
         this.out.println(s);
     }
+
     @Override
     public InputStream getIn() {
         return in;

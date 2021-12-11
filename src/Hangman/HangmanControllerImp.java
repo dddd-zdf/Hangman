@@ -12,6 +12,7 @@ public class HangmanControllerImp implements HangmanController {
     private final HangmanModel model;
     private final Scanner in;
     private final HangmanView view;
+
     /**
      * check if numeric
      *
@@ -20,12 +21,16 @@ public class HangmanControllerImp implements HangmanController {
      */
     private static boolean isLetter(String s) {
         Pattern p = Pattern.compile("[a-zA-Z]+");
-        if (s == null) {return false;}
+        if (s == null) {
+            return false;
+        }
         return p.matcher(s).matches();
     }
 
     public HangmanControllerImp(HangmanModel m, HangmanView v) {
-        if (m == null || v == null) {throw new IllegalArgumentException("null IO");}
+        if (m == null || v == null) {
+            throw new IllegalArgumentException("null IO");
+        }
         this.model = m;
         this.in = new Scanner(v.getIn());
         this.view = v;
@@ -46,12 +51,12 @@ public class HangmanControllerImp implements HangmanController {
             String word = dict.get(random.nextInt(dict.size()));
             this.model.takeWord(word);
             return word;
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             this.view.wordPickError();
             return null;
         }
     }
+
     @Override
     public void playGame() {
         String buffer;
@@ -78,17 +83,21 @@ public class HangmanControllerImp implements HangmanController {
                     }
                 }
                 //not letter
-            } else {this.view.letterOnly();}
+            } else {
+                this.view.letterOnly();
+            }
             //check gameOver
-            if (this.model.isOver()) {break;} else {this.view.prompt();}
+            if (this.model.isOver()) {
+                break;
+            } else {
+                this.view.prompt();
+            }
         }
-        if (this.model.getMis() == 8) {
-            this.view.loss();
-            this.view.showAnswer(model.getWord());
-        }
-        else {
+        if (this.model.isWin()) {
             this.view.win();
+        } else {
+            this.view.loss();
+            this.view.showAnswer(this.model.getWord());
         }
-
     }
 }

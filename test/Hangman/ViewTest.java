@@ -3,12 +3,13 @@ package Hangman;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 import java.io.*;
 
 /**
- * there is a line separator issue I am not sure how to solve. tests may fail on Windows since it's /r/n.
+ * tests may fail on Windows since it's a different line separator.
  */
 public class ViewTest {
     private HangmanView v;
@@ -42,22 +43,22 @@ public class ViewTest {
     @Test
     public void guessWrong() {
         this.v.guessWrong("abc", 1);
-    assertEquals(
-            """
-                    wrong
-                    hangman status:
+        assertEquals(
+                """
+                        wrong
+                        hangman status:
 
-                    |
-                    |
-                    |
-                    |
-                    |
-                    |
-                    |
-                    ----------
-                    word: abc
-                    """,
-        this.log.toString());
+                        |
+                        |
+                        |
+                        |
+                        |
+                        |
+                        |
+                        ----------
+                        word: abc
+                        """,
+                this.log.toString());
     }
 
     @Test

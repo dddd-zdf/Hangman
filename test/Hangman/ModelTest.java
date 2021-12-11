@@ -13,23 +13,15 @@ public class ModelTest {
     /**
      * pass one word "WORD" upper case in a temporary dictionary to the model
      * since this game ignores the letter case, such robustness will be tested given a lower case input
-     *
      */
     @Before
-    public void setUp() throws IOException {
+    public void setUp() {
         this.m = new HangmanModelImp();
         this.m.takeWord("WORD");
     }
 
     @Test
     public void testGetWord() {
-        assertEquals("word", this.m.getWord());
-    }
-
-
-    @Test
-    public void testPickWord() {
-        assertEquals(1, this.m.takeWord("word"));
         assertEquals("word", this.m.getWord());
     }
 
@@ -48,6 +40,14 @@ public class ModelTest {
         this.m.guess("word");
         assertEquals(2, m.getMis());
     }
+
+    @Test
+    public void testIsOverWin() {
+        this.m.guess("word");
+        assertTrue(this.m.isOver());
+        assertTrue(this.m.isWin());
+    }
+
     @Test
     public void testIsOverLoss() {
         for (int i = 0; i < 7; i++) {
@@ -56,7 +56,9 @@ public class ModelTest {
         }
         this.m.guess('a');
         assertTrue(this.m.isOver());
+        assertFalse(this.m.isWin());
     }
+
     @Test
     public void testGetStatus() {
         //initial status
@@ -81,5 +83,26 @@ public class ModelTest {
         assertEquals(0, this.m.guess("dowrd"));
         //right string guess
         assertEquals(1, this.m.guess("word"));
+    }
+
+    @Test
+    public void testIsWinNotOver() {
+        this.m.guess("abc");
+        assertThrows(IllegalStateException.class, () -> this.m.isWin());
+    }
+
+    @Test
+    public void testIsWinWin() {
+        this.m.guess("word");
+        assertTrue(this.m.isWin());
+    }
+
+    @Test
+    public void testIsWinLoss() {
+        for (int i = 0; i < 8; i++) {
+            this.m.guess('a');
+        }
+        assertFalse(this.m.isWin());
+
     }
 }
