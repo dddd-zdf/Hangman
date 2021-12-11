@@ -59,6 +59,7 @@ public class HangmanControllerImp implements HangmanController {
 
     @Override
     public void playGame() {
+        if (this.model.getWord() == null) {System.exit(1);}
         String buffer;
         this.view.prompt();
         while (this.in.hasNext()) {
